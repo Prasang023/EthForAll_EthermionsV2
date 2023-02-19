@@ -55,7 +55,7 @@ function Header() {
           saveAddressAndSigner({ address, signer, instances, nftInstances })
         )
       : null
-  }, [signer])
+  }, [signer, dispatch])
 
   // const doLogout = () => {
   //   dispatch(logout());
@@ -67,7 +67,7 @@ function Header() {
   return (
     <>
       <div className="logo-container">
-        <Image src={logo} width={60} height={60} />
+        <Image alt="image" src={logo} width={60} height={60} />
       </div>
       <div className="Header">
         <ul className="navbar">

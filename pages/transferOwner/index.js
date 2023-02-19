@@ -16,7 +16,7 @@ import Loader from "@/components/Loader";
 const projectId = "2LaElUcAr2SYK3KuPpor7Xlc5hB";
 const projectSecret = "0947f1f7854b4631c685a30c20e51d4d";
 
-function index() {
+function Index() {
   const dispatch = useDispatch();
   const { signer } = useSelector((state) => state.header);
   const [localLoading, setLocalLoading] = useState(false);
@@ -61,9 +61,9 @@ function index() {
 
   const handleClick = async () => {
     console.log("yes clicked");
-    const res = await axios.get(
-      `${process.env.BACKEND_ENDPOINT}/product/fetchIpfs?uuid=${data.tokenId}`
-    );
+    // const res = await axios.get(
+    //   `${process.env.BACKEND_ENDPOINT}/product/fetchIpfs?uuid=${data.tokenId}`
+    // );
     //   let link = await instances.getProductDetails(tmpid)
   
     // console.log(res?.data?.response?.ipfs);
@@ -186,4 +186,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;

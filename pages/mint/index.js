@@ -19,7 +19,7 @@ import nft_contract_address from "../../assets/contract_data/nftAddress.json"
 const projectId = "2LaElUcAr2SYK3KuPpor7Xlc5hB"
 const projectSecret = "0947f1f7854b4631c685a30c20e51d4d"
 
-function index() {
+function Index() {
   const dispatch = useDispatch()
   const [qrImg, setQrImg] = useState(null)
   const [localLoading, setLocalLoading] = useState(false)
@@ -400,4 +400,4 @@ function index() {
   )
 }
 
-export default index
+export default Index

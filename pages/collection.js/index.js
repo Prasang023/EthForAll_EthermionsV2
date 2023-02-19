@@ -7,7 +7,7 @@ import { getMyNfts } from "@/redux/slices/collection"
 import { useAccount } from "wagmi"
 // import Loader from "@/components/Loader";
 
-function index() {
+function Index() {
   const dispatch = useDispatch()
   // const [localLoading, setLocalLoading] = useState(false);
   const { address } = useAccount()
@@ -15,7 +15,7 @@ function index() {
 
   useEffect(() => {
     dispatch(getMyNfts(address))
-  }, [address])
+  }, [address, dispatch])
 
   return (
     <Layout>
@@ -40,4 +40,4 @@ function index() {
   )
 }
 
-export default index
+export default Index

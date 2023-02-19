@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux"
 import Layout from "../components/Layout"
 import { useRouter } from "next/router"
 
-const auth = () => {
+const Auth = () => {
   const [authLogin, setAuthLogin] = useState(true)
   const [data, setData] = useState({
     name: "",
@@ -149,4 +149,4 @@ const auth = () => {
   )
 }
 
-export default auth
+export default Auth

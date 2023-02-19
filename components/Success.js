@@ -15,7 +15,7 @@ const Success = () => {
         dispatch(clearSuccess())
       }, 10000)
     }
-  }, [message])
+  }, [message, dispatch])
 
   //   console.log("in error comp", message)
   if (message === null) {

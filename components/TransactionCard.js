@@ -3,10 +3,9 @@ import Link from "next/link"
 // import { ethers } from "ethers";
 // import { useSelector } from "react-redux";
 import { useAccount } from "wagmi"
-import axios from "axios"
 // import { useIsMounted } from "@/pages/hooks/useIsMounted";
 
-const TransactionCard = ({}) => {
+const TransactionCard = () => {
   // const mounted = useIsMounted()
 
   // const API_KEY = "MIAEXYAS736K5A1FCH2HIU5X8KVVI4IW2A";

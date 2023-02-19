@@ -14,7 +14,7 @@ const Error = () => {
         dispatch(clearError())
       }, 10000)
     }
-  }, [message])
+  }, [message, dispatch])
 
   if (message === null) {
     return null
