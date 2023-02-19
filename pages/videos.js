@@ -2,6 +2,7 @@ import { Player, useAssetMetrics, useCreateAsset } from "@livepeer/react"
 
 import { useCallback, useMemo, useState } from "react"
 import { useDropzone } from "react-dropzone"
+import Layout from "@/components/Layout"
 
 const Videos = () => {
   const [video, setVideo] = useState(undefined)
@@ -60,7 +61,7 @@ const Videos = () => {
   console.log("asset", asset)
 
   return (
-    <div>
+    <Layout>
       {!asset && (
         <div>
           <div {...getRootProps()}>
@@ -101,7 +102,7 @@ const Videos = () => {
           </button>
         )}
       </div>
-    </div>
+    </Layout>
   )
 }
 
