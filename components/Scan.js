@@ -4,7 +4,6 @@ import QRCode from "qrcode.react";
 import Quagga from "quagga";
 
 function Scan() {
-
   const videoRef = useRef(null);
   const [scannedData, setScannedData] = useState(null);
 
@@ -44,7 +43,7 @@ function Scan() {
       }
     );
     // };
-  }, []);
+  });
 
   const handleDetected = (result) => {
     setScannedData(result.codeResult.code);
