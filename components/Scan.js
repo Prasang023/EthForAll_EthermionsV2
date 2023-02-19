@@ -1,55 +1,78 @@
 //scan.js
-import React from "react"
-// import { QrReader } from "react-qr-reader"
-// import { useRouter } from "next/router"
-// import styles from "../styles/Home.module.css";
-// import Header from "@/components/Header";
-// import Footer from "@/components/Footer";
+import React, { useState, useEffect, useRef } from "react";
+import QRCode from "qrcode.react";
+import Quagga from "quagga";
 
 function Scan() {
-  // const [data, setData] = useState("");
-  // const router = useRouter()
 
-  // useEffect(() => {
-  //   const redirectLink = document.createElement("a")
-  //   redirectLink.href = data
-  //   redirectLink.click()
-  // }, [data])
+  const videoRef = useRef(null);
+  const [scannedData, setScannedData] = useState(null);
 
-  // const redirectTo = (link) => {
-  //   // console.log(link)
-  //   router.push(link.substring(23, link.length - 1))
-  //   // const redirectLink = document.createElement("a")
-  //   // redirectLink.href = link
-  //   // redirectLink.click()
-  // }
+  useEffect(() => {
+    // const startScanner = () => {
+    const constraints = { video: { facingMode: "environment" } };
+
+    navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then((stream) => {
+        videoRef.current.srcObject = stream;
+        videoRef.current.play();
+      })
+      .catch((error) => {
+        console.error("Error accessing camera:", error);
+      });
+
+    // Start Quagga
+    Quagga.init(
+      {
+        inputStream: {
+          name: "LiveStream",
+          type: "LiveStream",
+          target: videoRef.current,
+        },
+        decoder: {
+          readers: ["code_128_reader"],
+        },
+      },
+      (err) => {
+        if (err) {
+          console.error("Error initializing Quagga:", err);
+          return;
+        }
+        Quagga.onDetected(handleDetected);
+        Quagga.start();
+      }
+    );
+    // };
+  }, []);
+
+  const handleDetected = (result) => {
+    setScannedData(result.codeResult.code);
+    console.log(scannedData);
+    // Quagga.stop();
+  };
 
   return (
     <>
       <div className="QrMain">
         <div className="QrScannerContainer">
           <div className="QrScanner">
-            {/* <QrReader
-              onResult={(result, error) => {
-                // console.log(result);
-                if (!!result) {
-                  redirectTo(result?.text)
-                }
-                if (!!error) {
-                  console.info(error)
-                }
-              }}
-              constraints={{ facingMode: "environment" }}
-              style={{ width: "40%", height: "40%" }}
-            />
-            <p>
-              {data}
-            </p> */}
+            <div>
+              {scannedData ? (
+                <QRCode value={scannedData} />
+              ) : (
+                <video
+                  ref={videoRef}
+                  style={{ width: "100%", height: "auto" }}
+                ></video>
+              )}
+            </div>
+            {/* <button onClick={startScanner}>Start Scanner</button> */}
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Scan
+export default Scan;
