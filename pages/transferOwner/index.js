@@ -41,8 +41,8 @@ function Index() {
         `${process.env.BACKEND_ENDPOINT}/product/fetchIpfs?uuid=${id}`
       );
       //   let link = await instances.getProductDetails(tmpid)
-      console.log(res.data.response.ipfs);
-      const resa = res ? await axios.get(res.data.response.ipfs) : null;
+      console.log(res?.data?.response[0].ipfs);
+      const resa = res ? await axios.get(res?.data?.response[0].ipfs) : null;
       setProductData(resa.data);
     };
 

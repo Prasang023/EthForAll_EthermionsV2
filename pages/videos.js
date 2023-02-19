@@ -1,10 +1,9 @@
 import { Player, useAssetMetrics, useCreateAsset } from "@livepeer/react"
 
-import { useCallback, useMemo, useState } from "react"
+import { useCallback, useMemo, useState, useEffect } from "react"
 import { useDropzone } from "react-dropzone"
-import Layout from "@/components/Layout"
 
-const Videos = () => {
+const Videos = ({ handleChange }) => {
   const [video, setVideo] = useState(undefined)
   const {
     mutate: createAsset,
@@ -23,6 +22,17 @@ const Videos = () => {
     assetId: asset?.[0].id,
     refetchInterval: 30000
   })
+
+  useEffect(() => {
+    if (asset) {
+      handleChange({
+        target: {
+          name: "video",
+          value: asset[0]
+        }
+      })
+    }
+  }, [asset])
 
   const onDrop = useCallback(async (acceptedFiles) => {
     if (acceptedFiles && acceptedFiles.length > 0 && acceptedFiles?.[0]) {
@@ -61,7 +71,7 @@ const Videos = () => {
   console.log("asset", asset)
 
   return (
-    <Layout>
+    <div>
       {!asset && (
         <div>
           <div {...getRootProps()}>
@@ -102,7 +112,7 @@ const Videos = () => {
           </button>
         )}
       </div>
-    </Layout>
+    </div>
   )
 }
 

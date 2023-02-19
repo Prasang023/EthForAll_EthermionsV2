@@ -15,6 +15,7 @@ import { updateProduct } from "@/redux/slices/product"
 import Loader from "@/components/Loader"
 import Image from "next/image"
 import nft_contract_address from "../../assets/contract_data/nftAddress.json"
+import Videos from "../videos"
 
 const projectId = "2LaElUcAr2SYK3KuPpor7Xlc5hB"
 const projectSecret = "0947f1f7854b4631c685a30c20e51d4d"
@@ -27,7 +28,8 @@ function Index() {
   const [data, setData] = useState({
     title: "",
     description: "",
-    image: ""
+    image: "",
+    video: null
   })
   const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDhhQTQzM0RkY2M4QzM5YWJFQzdmNzZDM2REQjlFOTBhMWY3RTk2RjMiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjkxMjcxMDk3NjMsIm5hbWUiOiJsZW5kTmZ0In0.7Zu-wSF34-7GlU5rVIXAvrIczw6MQYT4yV7vOVU9pis`
   const storage = new Web3Storage({ token: token })
@@ -360,7 +362,7 @@ function Index() {
                   placeholder="Item Name"
                   disabled={localLoading}
                 />
-
+                <Videos handleChange={handleChange} />
                 <InputBox
                   name="title"
                   title="Title"
