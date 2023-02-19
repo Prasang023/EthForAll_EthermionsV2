@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import axios from "axios"
 import Image from "next/image"
 import Layout from "@/components/Layout"
-import TransactionCard from "@/components/TransactionCard"
+// import TransactionCard from "@/components/TransactionCard"
 import { saveId } from "../../redux/header"
 // import { useIsMounted } from "../hooks/useIsMounted"
 
@@ -13,7 +13,7 @@ const Id = () => {
   const router = useRouter()
   const dispatch = useDispatch()
   const { id } = router.query
-  const { instances, walletAddress } = useSelector((state) => state.header)
+  const { walletAddress } = useSelector((state) => state.header)
   // const token = useIsMounted()
 
   const handleClick = () => {
@@ -23,7 +23,7 @@ const Id = () => {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem("token")
+    // const token = localStorage.getItem("token")
     const getLink = async (id) => {
       const res = await axios.get(
         `${process.env.BACKEND_ENDPOINT}/product/fetchIpfs?uuid=${id}`
@@ -64,7 +64,7 @@ const Id = () => {
               <a
                 href={productData?.nftLink}
                 style={{ textDecoration: "none" }}
-                target="_blank"
+                // target="_blank"
               >
                 <button className="btn" style={{ marginTop: "30px" }}>
                   View
@@ -106,7 +106,13 @@ const Id = () => {
             <div className="prodinDiv">
               <div className="txt prodtxtBox">
                 <h4>QR Data:</h4>
-                <a href={productData?.qrIpfs} style={{ textDecoration: "none" }} target="_blank"><button className="btn">View</button></a>
+                <a
+                  href={productData?.qrIpfs}
+                  style={{ textDecoration: "none" }}
+                  // target="_blank"
+                >
+                  <button className="btn">View</button>
+                </a>
               </div>
               <div className="txt prodtxtBox">
                 <h4>Current Owner Address:</h4>

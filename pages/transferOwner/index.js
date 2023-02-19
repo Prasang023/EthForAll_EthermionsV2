@@ -8,7 +8,7 @@ import InputBox from "@/components/InputBox";
 import Success from "@/components/Success";
 import Error from "@/components/Error";
 import axios from "axios";
-import { useProvider } from "wagmi";
+// import { useProvider } from "wagmi";
 import { updateProduct } from "@/redux/slices/product";
 import { create } from "ipfs-http-client";
 import Loader from "@/components/Loader";

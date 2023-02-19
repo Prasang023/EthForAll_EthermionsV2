@@ -177,46 +177,46 @@ function index() {
       })
   }
 
-  const handleClick = () => {
-    const auth =
-      "Basic " + Buffer.from(projectId + ":" + projectSecret).toString("base64")
-    const client = create({
-      host: "ipfs.infura.io",
-      port: 5001,
-      protocol: "https",
-      apiPath: "/api/v0",
-      headers: {
-        authorization: auth
-      }
-    })
-    setLocalLoading(false)
-    client
-      .add(JSON.stringify(data))
-      .then(async (res) => {
-        console.log("result", `https://ipfs.io/ipfs/${res.path}`)
-        const dataIpfs = `https://ipfs.io/ipfs/${res.path}`
-        console.log("address", walletAddress)
-        console.log("dataIPFS", dataIpfs)
-        setLocalLoading(true)
+  // const handleClick = () => {
+  //   const auth =
+  //     "Basic " + Buffer.from(projectId + ":" + projectSecret).toString("base64")
+  //   const client = create({
+  //     host: "ipfs.infura.io",
+  //     port: 5001,
+  //     protocol: "https",
+  //     apiPath: "/api/v0",
+  //     headers: {
+  //       authorization: auth
+  //     }
+  //   })
+  //   setLocalLoading(false)
+  //   client
+  //     .add(JSON.stringify(data))
+  //     .then(async (res) => {
+  //       console.log("result", `https://ipfs.io/ipfs/${res.path}`)
+  //       const dataIpfs = `https://ipfs.io/ipfs/${res.path}`
+  //       console.log("address", walletAddress)
+  //       console.log("dataIPFS", dataIpfs)
+  //       setLocalLoading(true)
 
-        let qrNftTx = await nftInstances.safeMint(walletAddress, dataIpfs)
-        console.log("Mining...", qrNftTx.hash)
-        // Status
-        let tx = await qrNftTx.wait()
-        setLocalLoading(false)
+  //       let qrNftTx = await nftInstances.safeMint(walletAddress, dataIpfs)
+  //       console.log("Mining...", qrNftTx.hash)
+  //       // Status
+  //       let tx = await qrNftTx.wait()
+  //       setLocalLoading(false)
 
-        console.log("Mined !", tx)
-        console.log(
-          `Mined, see transaction: https://mumbai.polygonscan.com/tx/${qrNftTx.hash}`
-        )
-        dispatch(setSuccess(`Minted Successfully with ${qrNftTx.hash}`))
-      })
-      .catch((err) => {
-        console.log("Error: ", err)
-        setLocalLoading(false)
-        dispatch(setError("Failed to generate IPFS link, Please retry"))
-      })
-  }
+  //       console.log("Mined !", tx)
+  //       console.log(
+  //         `Mined, see transaction: https://mumbai.polygonscan.com/tx/${qrNftTx.hash}`
+  //       )
+  //       dispatch(setSuccess(`Minted Successfully with ${qrNftTx.hash}`))
+  //     })
+  //     .catch((err) => {
+  //       console.log("Error: ", err)
+  //       setLocalLoading(false)
+  //       dispatch(setError("Failed to generate IPFS link, Please retry"))
+  //     })
+  // }
 
   const nftUpload = (e) => {
     e.preventDefault()
@@ -242,58 +242,58 @@ function index() {
     console.log(data.image)
   }
 
-  const uploadqr = () => {
-    let canvas = qrRef.current.querySelector("canvas")
-    let image = canvas.toDataURL("image/png")
+  // const uploadqr = () => {
+  //   let canvas = qrRef.current.querySelector("canvas")
+  //   let image = canvas.toDataURL("image/png")
 
-    const auth =
-      "Basic " + Buffer.from(projectId + ":" + projectSecret).toString("base64")
-    const client = create({
-      host: "ipfs.infura.io",
-      port: 5001,
-      protocol: "https",
-      apiPath: "/api/v0",
-      headers: {
-        authorization: auth
-      }
-    })
-    client
-      .add(JSON.stringify(image))
-      .then(async (res) => {
-        console.log("result", `https://ipfs.io/ipfs/${res.path}`)
-        const dataIpfs = `https://ipfs.io/ipfs/${res.path}`
-        console.log("address", walletAddress)
-        console.log("dataIPFS", dataIpfs)
+  //   const auth =
+  //     "Basic " + Buffer.from(projectId + ":" + projectSecret).toString("base64")
+  //   const client = create({
+  //     host: "ipfs.infura.io",
+  //     port: 5001,
+  //     protocol: "https",
+  //     apiPath: "/api/v0",
+  //     headers: {
+  //       authorization: auth
+  //     }
+  //   })
+  //   client
+  //     .add(JSON.stringify(image))
+  //     .then(async (res) => {
+  //       console.log("result", `https://ipfs.io/ipfs/${res.path}`)
+  //       const dataIpfs = `https://ipfs.io/ipfs/${res.path}`
+  //       console.log("address", walletAddress)
+  //       console.log("dataIPFS", dataIpfs)
 
-        let qrNftTx = await nftInstances.safeMint(walletAddress, dataIpfs)
-        console.log("Mining...", qrNftTx.hash)
-        // Status
-        let tx = await qrNftTx.wait()
-        // Loader
-        console.log("Mined !", tx)
+  //       let qrNftTx = await nftInstances.safeMint(walletAddress, dataIpfs)
+  //       console.log("Mining...", qrNftTx.hash)
+  //       // Status
+  //       let tx = await qrNftTx.wait()
+  //       // Loader
+  //       console.log("Mined !", tx)
 
-        console.log(
-          `Mined, see transaction: https://mumbai.polygonscan.com/tx/${qrNftTx.hash}`
-        )
-      })
-      .catch((err) => {
-        console.log("Error: ", err)
-        dispatch(setError("Failed to generate IPFS link, Please retry"))
-      })
-  }
+  //       console.log(
+  //         `Mined, see transaction: https://mumbai.polygonscan.com/tx/${qrNftTx.hash}`
+  //       )
+  //     })
+  //     .catch((err) => {
+  //       console.log("Error: ", err)
+  //       dispatch(setError("Failed to generate IPFS link, Please retry"))
+  //     })
+  // }
 
-  const downloadQRCode = (e) => {
-    e.preventDefault()
-    let canvas = qrRef.current.querySelector("canvas")
-    let image = canvas.toDataURL("image/png")
-    let anchor = document.createElement("a")
-    anchor.href = image
-    anchor.download = `qr-code.png`
-    document.body.appendChild(anchor)
-    anchor.click()
-    document.body.removeChild(anchor)
-    setUrl("")
-  }
+  // const downloadQRCode = (e) => {
+  //   e.preventDefault()
+  //   let canvas = qrRef.current.querySelector("canvas")
+  //   let image = canvas.toDataURL("image/png")
+  //   let anchor = document.createElement("a")
+  //   anchor.href = image
+  //   anchor.download = `qr-code.png`
+  //   document.body.appendChild(anchor)
+  //   anchor.click()
+  //   document.body.removeChild(anchor)
+  //   setUrl("")
+  // }
 
   const qrcode = (
     <QRCodeCanvas
