@@ -24,6 +24,7 @@
     "next": "13.1.6",
     "next-redux-wrapper": "^8.1.0",
     "qrcode.react": "^3.1.0",
+    "quagga": "^0.12.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
@@ -31,6 +32,7 @@
     "react-loader-spinner": "^5.3.4",
     "react-qr-code": "^2.0.11",
     "react-redux": "^8.0.5",
+    "react-scanner": "^1.1.0",
     "wagmi": "^0.9.6",
     "web3.storage": "^4.4.0"
   }
