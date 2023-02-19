@@ -3,8 +3,8 @@
 // import { Inter } from "@next/font/google";
 // import styles from "@/styles/Home.module.css";
 import Layout from "../components/Layout"
-import Support from "@/components/Support"
-import Desc from "@/components/Desc"
+// import Support from "@/components/Support"
+// import Desc from "@/components/Desc"
 import { useState } from "react"
 import Scan from "@/components/Scan"
 import { useRouter } from "next/router"
@@ -56,5 +56,5 @@ export default function Home() {
         </div>
       </div>
     </Layout>
-  );
+  )
 }

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import InputBox from "@/components/InputBox"
 import { registerUser, loginUser } from "@/redux/slices/auth"
-import { setError } from "../redux/slices/error"
-import { setSuccess } from "../redux/slices/success"
-import { useDispatch, useSelector } from "react-redux"
-import Error from "../components/Error"
-import Success from "../components/Success"
+// import { setError } from "../redux/slices/error"
+// import { setSuccess } from "../redux/slices/success"
+import { useDispatch } from "react-redux"
+// import Error from "../components/Error"
+// import Success from "../components/Success"
 import Layout from "../components/Layout"
 import { useRouter } from "next/router"
 
@@ -52,8 +52,8 @@ const auth = () => {
   }
 
   const handleRegister = () => {
-    let coordinateX
-    let coordinateY
+    // let coordinateX
+    // let coordinateY
     console.log("btn clicked")
     // console.log(
     navigator.geolocation.getCurrentPosition((position) => {
