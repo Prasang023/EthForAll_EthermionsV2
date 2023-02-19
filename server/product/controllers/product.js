@@ -70,7 +70,7 @@ const generateQR = async (req, res) => {
   const { uuid } = req.query;
 
   try {
-    let data = `https://localhost:3000/product/${uuid}`;
+    let data = `https://eth-for-all-ethermions-v2-alpha.vercel.app/product/${uuid}`;
 
     let stringdata = JSON.stringify(data);
 

@@ -1,38 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Problem
 
-## Getting Started
+Supply chain management is a crucial aspect of business operations, as it helps companies
+to track the movement of goods and services from raw material sourcing to the end
+customer. However, the current supply chain management systems are fragmented, lack
+transparency, and are vulnerable to fraud and counterfeiting, leading to inefficiencies and a
+loss of trust between different stakeholders.
 
-First, run the development server:
+## Solution
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+We are using blockchain-based decentralised supply chain management system to
+provide a secure, transparent, and tamper-proof record of transactions and traceability of
+products throughout the supply chain. It aims to improve supply chain efficiency, reduce
+costs, enhance transparency, increase trust among supply chain partners, and prevent
+counterfeits and frauds. The decentralised nature of the system leads to improved collaboration, increased transparency, and reduced
+operational costs for all participants.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project WorkFlow
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Manufacturer registers the product on the mint page of the website by entering the details of the product (Title, Description, Image and Video).
+2. The Video is uploaded using the livepeer and the video data is combined with all other product inormation and uploaded on IPFS network.
+3. A QR is generated for all the information which is then minted as an nft using the manufaturers wallet.
+4. Manufaturer of the project needs to print this QR Code and attach this to the product physically before shipping of the project.
+5. Now whenever anyone scans this QR, he/she is redirected to a page where all the real time information about the product can be seen which includes the current owner of the product as well as the images or videos attached along the supply chain while shipping. It can be scanned using any QR code scanner being user-friendly.
+6. At every level of the supply chain, whenever the product is transffered from one person to another, current owner needs to scan the QR code and trnsfer the nft to another person. In this way, all the past transactions about the product are recorded along with the nft information making it fully transparent in nature.
+7. We can use the "Secure QR", which is a non-copieble QR code i.e it losts it data on reprinting/photocopying so that to avoid frauds like fake products selling, etc.  
+   
+##
