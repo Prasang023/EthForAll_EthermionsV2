@@ -1,18 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    BACKEND_ENDPOINT: "https://ethforall.onrender.com/api"
+    BACKEND_ENDPOINT: "https://ethermionsv2.onrender.com/api",
   },
   images: {
     remotePatterns: [
       {
         protocol: "https",
         hostname: "ipfs.io",
-        port: ""
-      }
-    ]
+        port: "",
+      },
+    ],
   },
-  reactStrictMode: true
-}
+  reactStrictMode: true,
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

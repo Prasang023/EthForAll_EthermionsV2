@@ -1,54 +1,39 @@
 //scan.js
-import React, { useState, useEffect, useRef } from "react";
-import QRCode from "qrcode.react";
-import Quagga from "quagga";
+import dynamic from "next/dynamic";
+import React, { useState, useRef } from "react";
+import { useRouter } from "next/router";
+
+const QrReader = dynamic(() => import(`react-weblineindia-qrcode-scanner`), {
+  ssr: false,
+});
 
 function Scan() {
   const videoRef = useRef(null);
   const [scannedData, setScannedData] = useState(null);
+  const [isReady, setIsReady] = useState(false);
+  const router = useRouter();
 
-  useEffect(() => {
-    // const startScanner = () => {
-    const constraints = { video: { facingMode: "environment" } };
+  function handleLoad() {
+    setIsReady(true);
+  }
 
-    navigator.mediaDevices
-      .getUserMedia(constraints)
-      .then((stream) => {
-        videoRef.current.srcObject = stream;
-        videoRef.current.play();
-      })
-      .catch((error) => {
-        console.error("Error accessing camera:", error);
+  const handleDetected = (data) => {
+    setScannedData(data);
+    console.log(`Scanned Data: ${data}`);
+    if (videoRef.current && isReady) {
+      videoRef.current.play().catch((error) => {
+        console.error("Error starting scanner:", error);
       });
+    }
+  };
 
-    // Start Quagga
-    Quagga.init(
-      {
-        inputStream: {
-          name: "LiveStream",
-          type: "LiveStream",
-          target: videoRef.current,
-        },
-        decoder: {
-          readers: ["code_128_reader"],
-        },
-      },
-      (err) => {
-        if (err) {
-          console.error("Error initializing Quagga:", err);
-          return;
-        }
-        Quagga.onDetected(handleDetected);
-        Quagga.start();
-      }
-    );
-    // };
-  });
+  const previewStyle = {
+    height: 240,
+    width: 280,
+  };
 
-  const handleDetected = (result) => {
-    setScannedData(result.codeResult.code);
-    console.log(scannedData);
-    // Quagga.stop();
+  const redirect = (data) => {
+    router.push(!data ? "/" : data.substring(52, data.length - 1));
   };
 
   return (
@@ -57,16 +42,19 @@ function Scan() {
         <div className="QrScannerContainer">
           <div className="QrScanner">
             <div>
-              {scannedData ? (
-                <QRCode value={scannedData} />
+              {!scannedData ? (
+                <QrReader
+                  style={previewStyle}
+                  onScan={handleDetected}
+                  onLoad={handleLoad}
+                  onError={(e) => {
+                    console.error(e.message);
+                  }}
+                />
               ) : (
-                <video
-                  ref={videoRef}
-                  style={{ width: "100%", height: "auto" }}
-                ></video>
+                <>{redirect(scannedData)}</>
               )}
             </div>
-            {/* <button onClick={startScanner}>Start Scanner</button> */}
           </div>
         </div>
       </div>
