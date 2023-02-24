@@ -28,8 +28,8 @@ function Scan() {
   };
 
   const previewStyle = {
-    height: 240,
-    width: 280,
+    height: 250,
+    width: 300,
   };
 
   const redirect = (data) => {
